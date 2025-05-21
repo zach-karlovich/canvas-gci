@@ -28,7 +28,7 @@ runner = CliRunner()
 def test_cli_creates_module_directories(tmp_path: Path) -> None:
     """Test that the CLI creates the expected module directory structure."""
     output_dir = tmp_path / "canvas_output"
-    # The CLI should create the root 'modules' dir itself if it doesn't exist
+    # CLI should create 'modules' dir if it doesn't exist # noqa: E501
     # within output_dir
 
     args = [
@@ -43,7 +43,7 @@ def test_cli_creates_module_directories(tmp_path: Path) -> None:
 
     result = runner.invoke(app, args)
 
-    assert result.exit_code == 1
+    assert result.exit_code == 0
     # Check if the main 'modules' directory was created inside output_dir
     # The ensure_module_dirs function in fs.py creates root / 'modules' /
     # module_slugs
