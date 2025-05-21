@@ -32,4 +32,4 @@ jobs:
         run: uv run pre-commit run --all-files
 
       - name: Run tests with coverage
-        run: pytest --cov=src/canvas_gci --cov-report=term-missing --cov-fail-under=90 tests/
+        run: uv run pytest --cov=src/canvas_gci --cov-report=term-missing --cov-fail-under=90 tests/
