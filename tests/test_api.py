@@ -18,7 +18,7 @@ load_dotenv()
 # Course ID for VCR recording, from PYTEST_VALID_COURSE_ID env var
 VALID_COURSE_ID = os.getenv("PYTEST_VALID_COURSE_ID", "12345")
 # API root for VCR recording, from CANVAS_API_ROOT env var
-API_ROOT = os.getenv("CANVAS_API_ROOT", "https://canvas.instructure.com/api/v1")
+API_ROOT = os.getenv("CANVAS_API_ROOT", "https://canvas.instructure.com/api/v1")  # noqa: E501
 
 
 @pytest.fixture
@@ -102,9 +102,9 @@ def test_get_modules_network_error(
 ) -> None:
     """Test a generic network error during API call."""
     mock_get = Mock(
-        side_effect=requests.exceptions.ConnectionError("Fake connection error")
+        side_effect=requests.exceptions.ConnectionError("Fake connection error")  # noqa: E501
     )
-    monkeypatch.setattr(api_client.session, "get", mock_get)
+    monkeypatch.setattr(api_client.session, "get", mock_get)  # noqa: E501
 
     with pytest.raises(CanvasAPIError) as excinfo:
         api_client.get_modules(int(VALID_COURSE_ID))
