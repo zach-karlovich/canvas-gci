@@ -68,4 +68,4 @@ If your institution uses `https://canvas.myuniversity.edu`:
 canvas-gci --course-id 12345 --api-root https://canvas.myuniversity.edu/api/v1
 ```
 
-_(More examples can be added here, e.g., demonstrating slugification, what happens if a module directory already exists, etc.)_
+(More examples can be added here, e.g., demonstrating slugification, what happens if a module directory already exists, etc.)
