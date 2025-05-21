@@ -23,9 +23,7 @@ jobs:
           python-version: "3.12"
 
       - name: Set up uv
-        uses: y0zer/setup-uv@v1
-        with:
-          version: "0.2.15" # Or your specific uv version
+        uses: astral-sh/setup-uv@v6
 
       - name: Install dependencies
         run: uv sync --all-extras
