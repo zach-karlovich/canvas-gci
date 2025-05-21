@@ -1,9 +1,11 @@
 import logging
+import os
 from pathlib import Path
 from typing import Optional
 
 import click
 import typer
+from dotenv import load_dotenv
 
 from .api import (
     CanvasAPI,
@@ -14,6 +16,7 @@ from .api import (
 from .fs import ensure_module_dirs
 from .logging_conf import setup_logging
 
+load_dotenv()
 app = typer.Typer()
 
 
@@ -31,7 +34,7 @@ def main(
         ..., "--course-id", help="Canvas course ID", show_default=False
     ),
     api_root: str = typer.Option(
-        "https://canvas.instructure.com/api/v1",
+        os.getenv("CANVAS_API_ROOT", "https://canvas.instructure.com/api/v1"),
         "--api-root",
         help="Canvas API root URL",
     ),
