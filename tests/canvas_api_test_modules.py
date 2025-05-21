@@ -4,9 +4,10 @@
 import requests
 import os
 from dotenv import load_dotenv
+from typing import Optional # Added for type hints if needed, though not strictly for this fix
 
 
-def get_course_modules(canvas_base_url: str, access_token: str, course_id: str):
+def get_course_modules(canvas_base_url: str, access_token: str, course_id: str) -> None:
     """
     Fetches modules for a specific course from the Canvas API.
 
@@ -24,7 +25,8 @@ def get_course_modules(canvas_base_url: str, access_token: str, course_id: str):
         "per_page": 10
     }
 
-    print(f"Attempting to fetch modules for course {course_id} from {api_url} with params {params}")
+    print(f"Fetching modules for course {course_id} from {api_url}")
+    print(f"Params: {params}")
 
     try:
         response = requests.get(api_url, headers=headers, params=params)
@@ -51,14 +53,18 @@ def get_course_modules(canvas_base_url: str, access_token: str, course_id: str):
 if __name__ == "__main__":
     load_dotenv()
 
-    CANVAS_BASE_URL = os.getenv("PYTEST_CANVAS_API_ROOT")
-    ACCESS_TOKEN = os.getenv("CANVAS_TOKEN")
-    COURSE_ID = os.getenv("PYTEST_VALID_COURSE_ID")
+    CANVAS_BASE_URL_OPT = os.getenv("PYTEST_CANVAS_API_ROOT")
+    ACCESS_TOKEN_OPT = os.getenv("CANVAS_TOKEN")
+    COURSE_ID_OPT = os.getenv("PYTEST_VALID_COURSE_ID")
 
-    if not all([CANVAS_BASE_URL, ACCESS_TOKEN, COURSE_ID]):
+    if not all([CANVAS_BASE_URL_OPT, ACCESS_TOKEN_OPT, COURSE_ID_OPT]):
         print(
             "Please ensure PYTEST_CANVAS_API_ROOT, CANVAS_TOKEN, and "
             "PYTEST_VALID_COURSE_ID are set in your .env file."
         )
     else:
+        # Assert that the variables are not None after the check
+        CANVAS_BASE_URL: str = CANVAS_BASE_URL_OPT # type: ignore
+        ACCESS_TOKEN: str = ACCESS_TOKEN_OPT       # type: ignore
+        COURSE_ID: str = COURSE_ID_OPT             # type: ignore
         get_course_modules(CANVAS_BASE_URL, ACCESS_TOKEN, COURSE_ID)
