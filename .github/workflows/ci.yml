@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CANVAS_API_ROOT: "https://canvas.its.virginia.edu/api/v1"
-      CANVAS_TOKEN: ${{ secrets.CANVAS_TOKEN_CI }}
+      CANVAS_TOKEN: ${{ secrets.CANVAS_TOKEN_CI }} # noqa
       PYTEST_VALID_COURSE_ID: "126335"
       VCR_CASSETTE_DIR: "tests/cassettes"
       PYTHONWARNINGS: "ignore::DeprecationWarning" # Suppress VCR.py deprecation warnings
@@ -37,5 +37,9 @@ jobs:
       - name: Run linters and type checker
         run: uv run pre-commit run --all-files
 
-      - name: Run tests with coverage
+      - name: Run Pytest with Coverage
+        env:
+          CANVAS_API_ROOT: "https://canvas.its.virginia.edu/api/v1"
+          PYTEST_VALID_COURSE_ID: "126335"
+          VCR_CASSETTE_DIR: "tests/cassettes/"
         run: uv run pytest --cov=src/canvas_gci --cov-report=term-missing --cov-fail-under=90 tests/
