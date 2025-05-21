@@ -39,7 +39,11 @@ A tool to clone Canvas course content locally, creating a directory structure ba
    ```env
    CANVAS_API_ROOT="https://your.canvas.instance.com/api/v1"
    CANVAS_TOKEN="your_api_token_here"
+   # For running tests that interact with VCR.py cassettes:
+   # PYTEST_VALID_COURSE_ID="your_course_id_for_recording_tests"
    ```
+
+   **Note for CI/GitHub Actions:** The tests require `CANVAS_API_ROOT`, `CANVAS_TOKEN`, and `PYTEST_VALID_COURSE_ID` to be set. In the GitHub Actions workflow (`.github/workflows/ci.yml`), `CANVAS_TOKEN` is sourced from a repository secret named `CANVAS_TOKEN_CI`. The other variables are set directly in the workflow file if specific values are needed for consistent cassette playback.
 
 2. **Run the CLI:**
 
