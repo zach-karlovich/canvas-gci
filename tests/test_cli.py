@@ -232,7 +232,9 @@ def test_cli_no_changes_needed(
     assert "No changes." in result.stdout
 
 
-def test_cli_no_modules_found(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_cli_no_modules_found(  # noqa: E501
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     """Test CLI handling when no modules are found for a course."""
     output_dir = tmp_path / "canvas_output_no_modules"
     args = [

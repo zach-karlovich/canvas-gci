@@ -190,3 +190,5 @@ ADR-001.md
 # Ignore .vscode
 .vscode/
 
+api_docs/
+
