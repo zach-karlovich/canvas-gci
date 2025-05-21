@@ -41,8 +41,8 @@ CANVAS_API_ROOT="https://your.canvas.instance.com/api/v1"
 CANVAS_TOKEN="your_api_token_here"
 ```
 
-*   `CANVAS_API_ROOT`: The root URL of your Canvas instance (e.g., `https://canvas.its.virginia.edu/api/v1` or `https://canvas.instructure.com/api/v1`).
-*   `CANVAS_TOKEN`: Your Canvas API access token. You can generate this from your Canvas profile settings.
+* `CANVAS_API_ROOT`: The root URL of your Canvas instance (e.g., `https://canvas.its.virginia.edu/api/v1` or `https://canvas.instructure.com/api/v1`).
+* `CANVAS_TOKEN`: Your Canvas API access token. You can generate this from your Canvas profile settings.
 
 When you run `uv run canvas-gci ...` from any directory, the application will automatically load these variables from the `.env` file located in the project's root directory.
 
@@ -53,10 +53,12 @@ When you run `uv run canvas-gci ...` from any directory, the application will au
 Alternatively, you can set `CANVAS_TOKEN` and `CANVAS_API_ROOT` as environment variables directly in your operating system. This makes them available globally, regardless of your current working directory or whether a `.env` file is present.
 
 **On Linux/macOS (e.g., in your `.bashrc` or `.zshrc`):**
+
 ```sh
 export CANVAS_TOKEN="your_api_token_here"
 export CANVAS_API_ROOT="https://your.canvas.instance.com/api/v1"
 ```
+
 Remember to source your shell configuration file (e.g., `source ~/.zshrc`) or open a new terminal for these changes to take effect.
 
 **On Windows:**
@@ -77,6 +79,7 @@ Replace `YOUR_COURSE_ID` with the actual ID of the course you want to process.
 The tool will create a directory named `modules/` in your current working directory, containing subdirectories for each module from the specified course.
 
 **Example:**
+
 ```sh
 # Ensure your .env file is in the project root, or system env vars are set.
 cd ~/MyCourses/STAT4000/
@@ -89,8 +92,8 @@ See `uv run canvas-gci --help` for all command-line options.
 
 ## Slug Rules Example
 
-- `Introduction - Linear Regression` → `introduction-linear-regression`
-- `Week 03: k-NN & SVM` → `week-03-k-n-n-svm`
+* `Introduction - Linear Regression` → `introduction-linear-regression`
+* `Week 03: k-NN & SVM` → `week-03-k-n-n-svm`
 
 See `--help` for all options.
 
