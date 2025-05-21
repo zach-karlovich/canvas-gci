@@ -12,6 +12,12 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
+    env:
+      CANVAS_API_ROOT: "https://canvas.its.virginia.edu/api/v1"
+      CANVAS_TOKEN: ${{ secrets.CANVAS_TOKEN_CI }}
+      PYTEST_VALID_COURSE_ID: "126335"
+      VCR_CASSETTE_DIR: "tests/cassettes"
+      PYTHONWARNINGS: "ignore::DeprecationWarning" # Suppress VCR.py deprecation warnings
 
     steps:
       - name: Checkout code
