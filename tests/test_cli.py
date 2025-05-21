@@ -19,9 +19,7 @@ load_dotenv()
 VALID_COURSE_ID = os.getenv(
     "PYTEST_VALID_COURSE_ID", "12345"
 )  # Ensure this is a real, accessible course ID
-CANVAS_API_ROOT = os.getenv(
-    "PYTEST_CANVAS_API_ROOT", "https://canvas.instructure.com/api/v1"
-)
+CANVAS_API_ROOT = os.getenv("CANVAS_API_ROOT", "https://canvas.instructure.com/api/v1")
 
 runner = CliRunner()
 
