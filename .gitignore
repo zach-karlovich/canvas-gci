@@ -98,7 +98,7 @@ ipython_config.py
 #   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
 #   This is especially recommended for binary packages to ensure reproducibility, and is more
 #   commonly ignored for libraries.
-#uv.lock
+uv.lock
 
 # poetry
 #   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
@@ -150,6 +150,8 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+mypy_report/
+mypy_html_report/
 
 # Pyre type checker
 .pyre/
@@ -172,3 +174,19 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Custom ignores
+.cursor/
+rules/
+mem.txt
+
+PRD.md
+tasks.md
+ADR-001.md
+
+# Ignore .DS_Store
+.DS_Store
+
+# Ignore .vscode
+.vscode/
+

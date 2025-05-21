@@ -1,0 +1,111 @@
+interactions:
+  - request:
+      body: null
+      headers:
+        Accept:
+          - application/json
+        Accept-Encoding:
+          - gzip, deflate
+        Authorization:
+          - Bearer 22119~eWVW4KnvJBxtwxKmrAWV446tDWJLZChWDT3NHnwLtthLaRRwLR2Y39NrQFBfF9PF
+        Connection:
+          - keep-alive
+        User-Agent:
+          - python-requests/2.32.3
+      method: GET
+      uri: https://canvas.its.virginia.edu/api/v1/courses/126335/modules?per_page=100
+    response:
+      body:
+        string:
+          '[{"id":326256,"name":"Module A: Review of Statistical Inference (finish
+          before starting Module 3)","position":3,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-01-05T01:26:22Z","items_count":6,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326256/items"},{"id":326257,"name":"Module
+          B: Basics of R (finish before starting Module 1)","position":4,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-01-05T01:26:22Z","items_count":6,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326257/items"},{"id":326258,"name":"Module
+          0","position":5,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-01-05T01:26:22Z","items_count":1,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326258/items"},{"id":326259,"name":"Module
+          1: Data Wrangling with R","position":6,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-01-05T01:26:23Z","items_count":8,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326259/items"},{"id":326260,"name":"Module
+          2: Data Visualization with R","position":7,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-01-05T01:26:23Z","items_count":9,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326260/items"},{"id":326261,"name":"Module
+          3: Introduction to Simple Linear Regression","position":8,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-01-05T01:26:23Z","items_count":10,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326261/items"},{"id":326262,"name":"Module
+          4: Inference with Simple Linear Regression","position":9,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-01-29T02:50:01Z","items_count":10,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326262/items"},{"id":326263,"name":"Module
+          5: Model Diagnostics and Remedial Measures in Simple Linear Regression","position":10,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-02-12T12:59:57Z","items_count":9,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326263/items"},{"id":326264,"name":"Project
+          1","position":11,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-02-17T21:43:13Z","items_count":3,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326264/items"},{"id":326265,"name":"Module
+          6: Introduction to Multiple Linear Regression","position":12,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-02-20T02:17:01Z","items_count":10,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326265/items"},{"id":326266,"name":"Module
+          7: General Linear F Test and Multicollinearity","position":13,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-02-26T03:04:45Z","items_count":8,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326266/items"},{"id":326267,"name":"Module
+          8: Categorical Predictors","position":14,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-03-16T12:21:51Z","items_count":10,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326267/items"},{"id":326268,"name":"Module
+          9: Model Selection","position":15,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-03-23T12:39:55Z","items_count":8,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326268/items"},{"id":326269,"name":"Module
+          10: Analysis of Residuals in MLR","position":16,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-03-28T14:15:58Z","items_count":10,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326269/items"},{"id":326270,"name":"Module
+          11: Logistic Regression","position":17,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-04-02T00:44:04Z","items_count":9,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326270/items"},{"id":326271,"name":"Module
+          12: Classification with Logistic Regression","position":18,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-04-09T01:38:31Z","items_count":8,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326271/items"},{"id":326272,"name":"Project
+          2","position":19,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-03-24T18:01:51Z","items_count":3,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326272/items"},{"id":326273,"name":"Exam","position":20,"unlock_at":null,"require_sequential_progress":false,"requirement_type":"all","publish_final_grade":false,"prerequisite_module_ids":[],"state":"completed","completed_at":"2025-04-11T14:11:48Z","items_count":1,"items_url":"https://canvas.its.virginia.edu/api/v1/courses/126335/modules/326273/items"}]'
+      headers:
+        Connection:
+          - keep-alive
+        Content-Type:
+          - application/json; charset=utf-8
+        Date:
+          - Wed, 21 May 2025 13:55:48 GMT
+        P3P:
+          - CP="None, see http://www.instructure.com/privacy-policy"
+        Server:
+          - Apache
+        Set-Cookie:
+          - _csrf_token=XA2sGzpIEgy8l3yYwxKWndNl0skMmc8KprWc3f7WhYgaXNl0VSBUZ%2FukJNSbcfvvvhXjqHnAgTzw4%2F%2FsuprT8g%3D%3D;
+            path=/; secure
+          - log_session_id=e0bba3a7318a0eed0ec855cb3bcca027; path=/; secure; httponly
+          - _legacy_normandy_session=rvl-FVdRXvIN_gNk7pavbg.wDvCV_9NHJNIz3syjiEmoblUCQfSHJn6nMCsuhmERtbfbWAnOHetXS8tY4YDJbB72QtWzLIptnprEFyLTZUJ8PmkvBqH-1D9Qq8L-IAdR8uyOtWOBbVIL48mBkPTUg91.TsYx4eZCvXh5TI5Qg1jPYg92_Xw.aC3bZA;
+            path=/; secure; httponly
+          - canvas_session=rvl-FVdRXvIN_gNk7pavbg.wDvCV_9NHJNIz3syjiEmoblUCQfSHJn6nMCsuhmERtbfbWAnOHetXS8tY4YDJbB72QtWzLIptnprEFyLTZUJ8PmkvBqH-1D9Qq8L-IAdR8uyOtWOBbVIL48mBkPTUg91.TsYx4eZCvXh5TI5Qg1jPYg92_Xw.aC3bZA;
+            path=/; secure; httponly; samesite=none
+        Status:
+          - 200 OK
+        Transfer-Encoding:
+          - chunked
+        X-A11y-Ally:
+          - Dana Danger Grey
+        X-Request-Processor:
+          - 0ce433a6e47eddbfa
+        cache-control:
+          - max-age=0, private, must-revalidate
+        content-encoding:
+          - gzip
+        content-security-policy:
+          - frame-ancestors 'self' canvas.its.virginia.edu universityofvirginia.instructure.com
+            universityofvirginia.staging.instructure.com universityofvirginia.beta.instructure.com
+            universityofvirginia.test.instructure.com;
+        etag:
+          - W/"dd7abb88b31a63386fd88d5521f00b37"
+        link:
+          - <https://canvas.its.virginia.edu/api/v1/courses/126335/modules?page=1&per_page=100>;
+            rel="current",<https://canvas.its.virginia.edu/api/v1/courses/126335/modules?page=1&per_page=100>;
+            rel="first",<https://canvas.its.virginia.edu/api/v1/courses/126335/modules?page=1&per_page=100>;
+            rel="last"
+        referrer-policy:
+          - no-referrer-when-downgrade
+        strict-transport-security:
+          - max-age=63072000
+        vary:
+          - Accept-Encoding
+        x-canvas-meta:
+          - q=6010;at=221190000000227646;dk=170000000000016;a=1;g=TUhHL8VxNad1UxUmL2QTLfBPl1HNyLzdOKR8HQoy;s=22119;c=cluster354;z=us-west-2c;o=context_modules_api;n=index;t=Course;i=126335;st=06321f6026a649c2b732b500d714b8cd-42314fd8351444c5-0;x=5.0;p=f;e=38654934;f=2025-05-21T13:55:48.29Z;b=2477528;m=2477528;u=0.36;y=0.02;d=0.10;
+        x-canvas-user-id:
+          - "221190000001301453"
+        x-content-type-options:
+          - nosniff
+        x-download-options:
+          - noopen
+        x-permitted-cross-domain-policies:
+          - none
+        x-rate-limit-remaining:
+          - "700.0"
+        x-request-context-id:
+          - b6c447e6-d5a6-478d-959b-1664d41e8171
+        x-request-cost:
+          - "0.46119515598348926"
+        x-runtime:
+          - "0.529112"
+        x-session-id:
+          - e0bba3a7318a0eed0ec855cb3bcca027
+        x-xss-protection:
+          - 1; mode=block
+      status:
+        code: 200
+        message: OK
+version: 1

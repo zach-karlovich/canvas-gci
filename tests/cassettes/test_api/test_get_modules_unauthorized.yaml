@@ -1,0 +1,79 @@
+interactions:
+  - request:
+      body: null
+      headers:
+        Accept:
+          - application/json
+        Accept-Encoding:
+          - gzip, deflate
+        Authorization:
+          - Bearer INVALID_TOKEN_FOR_TESTING
+        Connection:
+          - keep-alive
+        User-Agent:
+          - python-requests/2.32.3
+      method: GET
+      uri: https://canvas.its.virginia.edu/api/v1/courses/126335/modules?per_page=100
+    response:
+      body:
+        string: '{"errors":[{"message":"Invalid access token."}]}'
+      headers:
+        Connection:
+          - keep-alive
+        Content-Type:
+          - application/json; charset=utf-8
+        Date:
+          - Wed, 21 May 2025 13:55:49 GMT
+        P3P:
+          - CP="None, see http://www.instructure.com/privacy-policy"
+        Server:
+          - Apache
+        Set-Cookie:
+          - _csrf_token=jJO%2FvDJgk5Nw9qAxA4I4bM4VfvDQxRHKIP4mWW2s3jLfq%2FHvQgXAyUiGl2ZSrXI6%2BSYynaq0S6Zrk2EeWuexWA%3D%3D;
+            path=/; secure
+        Status:
+          - 401 Unauthorized
+        Transfer-Encoding:
+          - chunked
+        X-A11y-Ally:
+          - Dana Danger Grey
+        X-Request-Processor:
+          - 01eb41c72d8929fbb
+        cache-control:
+          - no-cache
+        content-encoding:
+          - gzip
+        content-security-policy:
+          - frame-ancestors 'self' canvas.its.virginia.edu universityofvirginia.instructure.com
+            universityofvirginia.staging.instructure.com universityofvirginia.beta.instructure.com
+            universityofvirginia.test.instructure.com;
+        referrer-policy:
+          - no-referrer-when-downgrade
+        strict-transport-security:
+          - max-age=63072000
+        vary:
+          - Accept-Encoding
+        www-authenticate:
+          - Bearer realm="canvas-lms"
+        x-canvas-meta:
+          - q=5741;o=context_modules_api;n=index;b=2563776;m=2563776;u=0.01;y=0.00;d=0.00;
+        x-content-type-options:
+          - nosniff
+        x-download-options:
+          - noopen
+        x-permitted-cross-domain-policies:
+          - none
+        x-rate-limit-remaining:
+          - "700.0"
+        x-request-context-id:
+          - 7b445786-523d-43b0-a9d0-a5864bb2312c
+        x-request-cost:
+          - "0.010139279000100032"
+        x-runtime:
+          - "0.027475"
+        x-xss-protection:
+          - 1; mode=block
+      status:
+        code: 401
+        message: Unauthorized
+version: 1

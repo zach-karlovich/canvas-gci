@@ -1,0 +1,86 @@
+interactions:
+  - request:
+      body: null
+      headers:
+        Accept:
+          - application/json
+        Accept-Encoding:
+          - gzip, deflate
+        Authorization:
+          - Bearer 22119~eWVW4KnvJBxtwxKmrAWV446tDWJLZChWDT3NHnwLtthLaRRwLR2Y39NrQFBfF9PF
+        Connection:
+          - keep-alive
+        User-Agent:
+          - python-requests/2.32.3
+      method: GET
+      uri: https://canvas.its.virginia.edu/api/v1/courses/999999999/modules?per_page=100
+    response:
+      body:
+        string: '{"errors":[{"message":"The specified resource does not exist."}]}'
+      headers:
+        Connection:
+          - keep-alive
+        Content-Type:
+          - application/json; charset=utf-8
+        Date:
+          - Wed, 21 May 2025 13:55:49 GMT
+        P3P:
+          - CP="None, see http://www.instructure.com/privacy-policy"
+        Server:
+          - Apache
+        Set-Cookie:
+          - _csrf_token=f%2BVhqWxCNfjU6TqoHmd0FBBfBitF3ZUL7IDy72dHEyZUtQjkAClPiYSIfv5WAgQsISw%2FEgqWpWa70Z2aJCRUQg%3D%3D;
+            path=/; secure
+          - log_session_id=7e13ddf4c338916f713a3e5f0b17fc8f; path=/; secure; httponly
+          - _legacy_normandy_session=LIWCUF66bNpn47WDXD32eg.44y0Xmc-IHc_q7XOVUiFu0izgeXINGyfHHvPoFsRh-BszDZ80sjPNTbkuzUdhmSjjoDMRNhjVuM1x79QLfUEA9DMg8d0r2BSTDN5-J26vgx9ujZ5LoRhnB28siO84YsI.CnrlN6DtsnKk8ds5HqJKmjanSQI.aC3bZQ;
+            path=/; secure; httponly
+          - canvas_session=LIWCUF66bNpn47WDXD32eg.44y0Xmc-IHc_q7XOVUiFu0izgeXINGyfHHvPoFsRh-BszDZ80sjPNTbkuzUdhmSjjoDMRNhjVuM1x79QLfUEA9DMg8d0r2BSTDN5-J26vgx9ujZ5LoRhnB28siO84YsI.CnrlN6DtsnKk8ds5HqJKmjanSQI.aC3bZQ;
+            path=/; secure; httponly; samesite=none
+        Status:
+          - 404 Not Found
+        Transfer-Encoding:
+          - chunked
+        X-A11y-Ally:
+          - Dana Danger Grey
+        X-Request-Processor:
+          - 074da0a468ff77486
+        cache-control:
+          - no-cache
+        content-encoding:
+          - gzip
+        content-security-policy:
+          - frame-ancestors 'self' canvas.its.virginia.edu universityofvirginia.instructure.com
+            universityofvirginia.staging.instructure.com universityofvirginia.beta.instructure.com
+            universityofvirginia.test.instructure.com;
+        referrer-policy:
+          - no-referrer-when-downgrade
+        strict-transport-security:
+          - max-age=63072000
+        vary:
+          - Accept-Encoding
+        x-canvas-meta:
+          - q=6346;at=221190000000227646;dk=170000000000016;a=1;g=TUhHL8VxNad1UxUmL2QTLfBPl1HNyLzdOKR8HQoy;s=22119;c=cluster354;z=us-west-2a;o=context_modules_api;n=index;st=1fcfa3167e5f48b483a95934708fa0d4-e078ac9c42464444-0;b=2546004;m=2546004;u=0.03;y=0.00;d=0.01;
+        x-canvas-user-id:
+          - "221190000001301453"
+        x-content-type-options:
+          - nosniff
+        x-download-options:
+          - noopen
+        x-permitted-cross-domain-policies:
+          - none
+        x-rate-limit-remaining:
+          - "700.0"
+        x-request-context-id:
+          - 68d9a792-bb73-4faf-a1a4-845251468a50
+        x-request-cost:
+          - "0.03321057300308894"
+        x-runtime:
+          - "0.045742"
+        x-session-id:
+          - 7e13ddf4c338916f713a3e5f0b17fc8f
+        x-xss-protection:
+          - 1; mode=block
+      status:
+        code: 404
+        message: Not Found
+version: 1

@@ -1,0 +1,39 @@
+[project]
+name = "canvas-gci"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "zach-karlovich", email = "ddf4me@virginia.edu" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "python-dotenv>=1.1.0",
+    "requests>=2.32.3",
+    "rich>=14.0.0",
+    "tqdm>=4.67.1",
+    "pydantic>=2.0.0",
+    "typer>=0.9.0"
+]
+
+[project.scripts]
+canvas-gci = "canvas_gci.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-recording>=0.13.0",
+    "vcrpy>=4.0.0",
+    "pre-commit>=3.0.0",
+    "mypy>=1.4.0",
+    "lxml",
+    "types-requests",
+    "pytest-cov>=2.5.0"
+]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I"]
