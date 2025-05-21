@@ -12,13 +12,13 @@ from canvas_gci.api import (
 from canvas_gci.models import CanvasModule
 from dotenv import load_dotenv
 
-# Load .env file for local testing with real credentials (for recording cassettes)
+# Load .env for local testing with real credentials (for VCR recording)
 load_dotenv()
 
-# Placeholder - replace with a real course ID for recording cassettes
+# Course ID for VCR recording, from PYTEST_VALID_COURSE_ID env var
 VALID_COURSE_ID = os.getenv("PYTEST_VALID_COURSE_ID", "12345")
-# Placeholder - replace with a real API root if not default Canvas cloud
-API_ROOT = os.getenv("PYTEST_CANVAS_API_ROOT", "https://canvas.instructure.com/api/v1")
+# API root for VCR recording, from CANVAS_API_ROOT env var
+API_ROOT = os.getenv("CANVAS_API_ROOT", "https://canvas.instructure.com/api/v1")
 
 
 @pytest.fixture
@@ -87,15 +87,14 @@ def test_get_modules_server_error_retry(
     with pytest.raises(CanvasAPIError) as excinfo:
         api_client.get_modules(int(VALID_COURSE_ID))
 
-    # Assert that the request was tried multiple times (initial + 3 retries = 4 calls)
+    # Assert request tried multiple times (initial + 3 retries = 4 calls)
     assert mock_get.call_count == 4
     assert "HTTP error: 500 Server Error" in str(excinfo.value)
 
 
 # Test for general CanvasAPIError for other request exceptions (e.g. network)
-# This is harder to test with VCR directly without more complex request
-# matching or custom VCR logic. A unit test mocking session.get to raise
-# requests.RequestException would be better.
+# Harder to test with VCR without complex matching or custom VCR logic.
+# Unit test: mock session.get to raise requests.RequestException.
 
 
 def test_get_modules_network_error(
