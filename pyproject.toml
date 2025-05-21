@@ -37,3 +37,7 @@ test = [
 
 [tool.ruff.lint]
 select = ["E", "W", "F", "I"]
+
+[tool.mypy]
+mypy_path = "src"
+warn_unused_configs = true

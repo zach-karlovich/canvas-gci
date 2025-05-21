@@ -60,7 +60,7 @@ def test_cli_creates_module_directories(tmp_path: Path) -> None:
 
     # The output_dir itself should exist (it's the 'root' passed to
     # ensure_module_dirs)
-    assert output_dir.exists(), f"Output directory {output_dir} was not created."
+    assert output_dir.exists(), f"Dir {output_dir} not created."
     assert output_dir.is_dir()
 
     # Assert that some module directories were created directly inside
@@ -95,7 +95,11 @@ def test_cli_creates_module_directories(tmp_path: Path) -> None:
     # assert (output_dir / "02-module-b").exists()
     print(f"CLI output:\n{result.stdout}")
     if result.exit_code != 0:
-        err_msg = result.stderr if hasattr(result, "stderr") else result.exception
+        err_msg: Any
+        if hasattr(result, "stderr"):
+            err_msg = result.stderr
+        else:
+            err_msg = result.exception
         print(f"CLI error:\n{err_msg}")
 
 
@@ -224,7 +228,7 @@ def test_cli_no_changes_needed(
     ), f"Expected exit code 0, got {result.exit_code}. Output: {result.stdout}"
     assert (
         result.exception is None
-    ), f"Expected no exception, got {type(result.exception)}: {result.exception}"
+    ), f"Unexpected exception: {type(result.exception)}: {result.exception}"
     assert "No changes." in result.stdout
 
 
