@@ -27,9 +27,9 @@ def test_ensure_module_dirs_idempotent_and_collision() -> None:
     with tempfile.TemporaryDirectory() as tmpdir:
         root = Path(tmpdir)
         modules = [
-            CanvasModule(id=1, name="Intro", position=1),
-            CanvasModule(id=2, name="Intro", position=2),
-            CanvasModule(id=3, name="Intro!", position=3),
+            CanvasModule(id=1, name="Module Intro 1", position=1),
+            CanvasModule(id=2, name="Module Intro 1", position=2),
+            CanvasModule(id=3, name="Module Intro 1", position=3),
         ]
         paths1 = ensure_module_dirs(root, modules)
         paths2 = ensure_module_dirs(root, modules)
@@ -38,16 +38,23 @@ def test_ensure_module_dirs_idempotent_and_collision() -> None:
         # All slugs should be unique and match the expected pattern
         slugs = [p.name for p in paths1]
         assert len(set(slugs)) == len(slugs)
-        assert sorted(slugs) == ["01-intro", "02-intro", "03-intro"]
+        expected_slugs = [
+            "module-intro-1",
+            "module-intro-1-2",
+            "module-intro-1-3",
+        ]
+        assert sorted(slugs) == expected_slugs
 
 
-def test_ensure_module_dirs_permission_error(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_ensure_module_dirs_permission_error(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     # Simulate permission error by making root unwritable
     with tempfile.TemporaryDirectory() as tmpdir:
         root = Path(tmpdir) / "readonly"
         root.mkdir()
         root.chmod(0o400)
-        modules = [CanvasModule(id=1, name="Test", position=1)]
+        modules = [CanvasModule(id=1, name="Module Test", position=1)]
         try:
             with pytest.raises(PermissionError):
                 ensure_module_dirs(root, modules)
