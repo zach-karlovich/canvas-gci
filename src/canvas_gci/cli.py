@@ -16,7 +16,17 @@ from .api import (
 from .fs import ensure_module_dirs
 from .logging_conf import setup_logging
 
-load_dotenv()
+# Determine the project root and the path to its .env file
+# __file__ is <project_root>/src/canvas_gci/cli.py
+cli_file_path = Path(__file__).resolve()
+project_root_dir = cli_file_path.parent.parent.parent  # Up three levels
+specific_dotenv_path = project_root_dir / ".env"
+
+# Load .env from project root if it exists. This will override system env vars.
+# If not found, system env vars (e.g., from .zshrc) will be used.
+if specific_dotenv_path.is_file():
+    load_dotenv(dotenv_path=specific_dotenv_path, override=True)
+
 app = typer.Typer()
 
 
@@ -63,7 +73,9 @@ def main(
             logging.info("No changes. All module directories already exist.")
             typer.echo("No changes.")
             raise typer.Exit(0)
-        typer.echo(f"Created {len(created_paths)} module directories in {output}.")
+        # Format message separately to avoid overly long line
+        msg = f"Created {len(created_paths)} module directories in {output}."
+        typer.echo(msg)
     except CanvasAPINotFound as e:
         logging.error(str(e))
         typer.echo(f"Error: {e}", err=True)

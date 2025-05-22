@@ -1,10 +1,10 @@
 # NOTE: This is a manual test script and not part of the automated test suite.
 # It was used for initial API connectivity testing.
 
-import requests
 import os
+
+import requests
 from dotenv import load_dotenv
-from typing import Optional
 
 
 def get_course_permissions(
@@ -20,13 +20,9 @@ def get_course_permissions(
         course_id: The ID of the course to fetch permissions for.
     """
     api_url = f"{canvas_base_url}/courses/{course_id}/permissions"
-    headers = {
-        "Authorization": f"Bearer {access_token}"
-    }
+    headers = {"Authorization": f"Bearer {access_token}"}
 
-    print(
-        f"Attempting to fetch permissions for course {course_id} from {api_url}"
-    )
+    print(f"Attempting to fetch permissions for course {course_id} from {api_url}")
 
     try:
         response = requests.get(api_url, headers=headers)
@@ -44,7 +40,7 @@ def get_course_permissions(
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
         response_text = "No response object"
-        if 'response' in locals() and hasattr(response, 'text'):
+        if "response" in locals() and hasattr(response, "text"):
             response_text = response.text
         print(f"Response Text: {response_text}")
     except requests.exceptions.RequestException as err:
@@ -65,7 +61,7 @@ if __name__ == "__main__":
         )
     else:
         # Assert that the variables are not None after the check
-        CANVAS_BASE_URL: str = CANVAS_BASE_URL_OPT # type: ignore
-        ACCESS_TOKEN: str = ACCESS_TOKEN_OPT       # type: ignore
-        COURSE_ID: str = COURSE_ID_OPT             # type: ignore
+        CANVAS_BASE_URL: str = CANVAS_BASE_URL_OPT  # type: ignore
+        ACCESS_TOKEN: str = ACCESS_TOKEN_OPT  # type: ignore
+        COURSE_ID: str = COURSE_ID_OPT  # type: ignore
         get_course_permissions(CANVAS_BASE_URL, ACCESS_TOKEN, COURSE_ID)

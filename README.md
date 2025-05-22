@@ -41,12 +41,12 @@ CANVAS_API_ROOT="https://your.canvas.instance.com/api/v1"
 CANVAS_TOKEN="your_api_token_here"
 ```
 
-* `CANVAS_API_ROOT`: The root URL of your Canvas instance (e.g., `https://canvas.its.virginia.edu/api/v1` or `https://canvas.instructure.com/api/v1`).
-* `CANVAS_TOKEN`: Your Canvas API access token. You can generate this from your Canvas profile settings.
+- `CANVAS_API_ROOT`: The root URL of your Canvas instance (e.g., `https://canvas.its.virginia.edu/api/v1` or `https://canvas.instructure.com/api/v1`).
+- `CANVAS_TOKEN`: Your Canvas API access token. You can generate this from your Canvas profile settings.
 
 When you run `uv run canvas-gci ...` from any directory, the application will automatically load these variables from the `.env` file located in the project's root directory.
 
-*(For running tests, you might also need `PYTEST_VALID_COURSE_ID` as noted in older versions of this README; see `pyproject.toml` or test configurations for details if you intend to record new test cassettes.)*
+_(For running tests, you might also need `PYTEST_VALID_COURSE_ID` as noted in older versions of this README; see `pyproject.toml` or test configurations for details if you intend to record new test cassettes.)_
 
 ### 2. Using System Environment Variables (For global access)
 
@@ -92,8 +92,8 @@ See `uv run canvas-gci --help` for all command-line options.
 
 ## Slug Rules Example
 
-* `Introduction - Linear Regression` → `introduction-linear-regression`
-* `Week 03: k-NN & SVM` → `week-03-k-n-n-svm`
+- `Introduction - Linear Regression` → `introduction-linear-regression`
+- `Week 03: k-NN & SVM` → `week-03-k-n-n-svm`
 
 See `--help` for all options.
 
