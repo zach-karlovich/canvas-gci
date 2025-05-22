@@ -76,26 +76,38 @@ uv run canvas-gci --course-id YOUR_COURSE_ID
 
 Replace `YOUR_COURSE_ID` with the actual ID of the course you want to process.
 
-The tool will create a directory named `modules/` in your current working directory, containing subdirectories for each module from the specified course.
+The tool will create a directory named `modules/` in your current working directory,
+inside `modules/`, it will create subdirectories for each Canvas course item that is identified as a module.
+
+**Directory Naming:**
+
+- **Module Identification:** Only items from the Canvas course whose titles explicitly contain the word "module" (case-insensitive) will have corresponding local directories created. For example, "Module 1: Introduction" or "Advanced Module on Quantum Physics" would be included, while "Course Syllabus" or "General Q&A" would be skipped.
+- **Slug Generation:** The directory name is a "slugified" version of the module title.
+  - If the title contains "module" followed by a number (e.g., "Module 1: Course Intro"), the slug will start with `m<number>` (e.g., `m1-course-intro`).
+  - The leading numeric prefix sometimes seen in Canvas module listings (like `01-`, `02-`) is **not** included in the created directory names.
+  - The rest of the title is converted to lowercase, with spaces and special characters replaced by hyphens.
+- **Output Location:** These module directories are created directly under the `modules/` folder in the directory where you run the command.
 
 **Example:**
 
-```sh
-# Ensure your .env file is in the project root, or system env vars are set.
-cd ~/MyCourses/STAT4000/
+If a Canvas course has modules titled:
 
-# This will create ./modules/ inside ~/MyCourses/STAT4000/
-uv run canvas-gci --course-id 12345
+- "01 - Module 1: Getting Started"
+- "02 - General Course Information"
+- "Module 2 - Advanced Topics"
+
+Running `uv run canvas-gci --course-id YOUR_COURSE_ID` would result in the following structure (assuming you ran it in `~/MyCourses/STAT4000/`):
+
+```
+~/MyCourses/STAT4000/
+└── modules/
+    ├── m1-getting-started/
+    └── m2-advanced-topics/
 ```
 
+(Note: "02 - General Course Information" is skipped as its title, after stripping the leading number, does not contain "module".)
+
 See `uv run canvas-gci --help` for all command-line options.
-
-## Slug Rules Example
-
-- `Introduction - Linear Regression` → `introduction-linear-regression`
-- `Week 03: k-NN & SVM` → `week-03-k-n-n-svm`
-
-See `--help` for all options.
 
 ## Running Tests
 
