@@ -98,10 +98,11 @@ def slugify(name: str) -> str:
             # e.g., "m123" if title part was empty
             final_slug = module_slug_prefix
     else:
-        # "module <number>" pattern was NOT found (or "module" keyword
-        # itself was not found).
-        # Return empty string to signal that no directory should be created.
-        return ""
+        # "module <number>" pattern was NOT found.
+        # Slugify the whole name based on text_to_slugify (which would be
+        # name_lower if "module" wasn't found or not in "module <number>").
+        # If slugified_core_part is empty, final_slug will be empty.
+        final_slug = slugified_core_part
 
     # Step 4: Truncate to 60 chars
     final_slug = final_slug[:60]
@@ -121,10 +122,14 @@ def ensure_module_dirs(root: Path, modules: List[CanvasModule]) -> List[Path]:
     created_paths = []
     used: set[str] = set()
     for module in modules:
+        # Only create directories for items names actually contain "module"
+        if "module" not in module.name.lower():
+            continue
+
         base_slug = slugify(module.name)
 
-        # Skip if slug is empty (e.g., item is not a typical module,
-        # like "Course Information").
+        # Skip if slug is empty (e.g., item not a typical module,
+        # or if slugify itself results in an empty string).
         if not base_slug:
             continue
 
