@@ -4,9 +4,12 @@ test_cases = [
     ("01-Module 1 - Getting Yourself Unstuck", "m1-getting-yourself-unstuck"),
     ("Module 2: The Art of Prompting", "m2-the-art-of-prompting"),
     ("10-module-10-Advanced Techniques", "m10-advanced-techniques"),
-    ("No Module Here", ""),
+    ("No Module Here", "no-module-here"),
     ("module 05_Another Example", "m5-another-example"),
-    ("This is just a Topic, not a module", ""),
+    (
+        "This is just a Topic, not a module",
+        "this-is-just-a-topic-not-a-module",
+    ),
     ("Module6WithoutSpace", "m6-withoutspace"),
     (
         "  Module 7 - Leading and Trailing Spaces   ",
@@ -17,7 +20,7 @@ test_cases = [
         "m8-very-long-name-that-will-exceed-sixty-characters-limit-fo",  # noqa: E501
     ),
     ("module 9", "m9"),
-    ("Another test without module", ""),
+    ("Another test without module", "another-test-without-module"),
     ("MODULE 11 - Uppercase Module", "m11-uppercase-module"),
     ("12-Module 12 with Number Prefix", "m12-with-number-prefix"),
 ]

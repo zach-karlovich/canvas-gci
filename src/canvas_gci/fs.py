@@ -9,77 +9,100 @@ __all__ = ["slugify", "ensure_module_dirs"]
 
 def slugify(name: str) -> str:
     """
-    Convert a module name string to a kebab-case, ASCII-safe slug.
-    The slug will be in the format 'm<number>-<slugified-title>'.
+    Convert a name string to a kebab-case, ASCII-safe slug.
+    If "module <number>" is found in the name, the slug will be in the format
+    'm<number>-<slugified-title>', where <title> is the part of the name
+    after "module <number>". Otherwise, the entire name (after initial
+    prefix stripping) is slugified.
 
     Processing steps:
-    1. Removes leading "##-" prefixes (e.g., "01-", "12-").
-    2. Converts the name to lowercase for processing.
-    3. If "module" (case-insensitive) is not found in the name,
-       returns an empty string.
-    4. Extracts the first number following "module" (e.g., from "Module 123").
-       This number forms the 'm<number>' prefix (e.g., "m123").
-    5. The part of the name string that appears *after* the "module <number>"
-       pattern is taken as the base for the title.
-    6. This title base is then slugified:
-        - Any run of non-alphanumeric characters is replaced with a single
-          hyphen '-'.
-        - Leading and trailing hyphens are stripped from this slugified
-          title part.
-    7. The final slug is constructed as 'm<number>-<slugified-title>'.
-       Else, the slug is 'm<number>'.  # noqa: E501
-    8. The resulting slug is truncated to a maximum of 60 characters.
+    1. Removes leading "##-" prefixes (e.g., "01-", "12-") from the input name.
+    2. Converts the processed name to lowercase.
+    3. Attempts to find "module" (case-insensitive) and a subsequent number
+       (e.g., "Module 123", "module-42").
+       - If this "module <number>" pattern is found:
+         a. The extracted number forms an 'm<number>' prefix (e.g., "m123").
+         b. The part of the name string that appears *after* the full
+            "module <number>" pattern is taken as the base for the title slug.
+         c. This title base is then slugified:
+            - Any run of non-alphanumeric characters is replaced with a single
+              hyphen '-'.
+            - Leading and trailing hyphens are stripped.
+         d. The final slug is 'm<number>-<slugified-title>' or 'm<number>'
+            if the slugified title part is empty.
+       - If the "module <number>" pattern is NOT found:
+         a. The entire processed name (from step 1, lowercased) is taken as
+            the base for slugification.
+         b. This base is slugified as described above (non-alphanumerics to
+            hyphens, then stripped).
+    4. The resulting slug is truncated to a maximum of 60 characters.
     """
     processed_name = name
 
-    # Step 1: Remove leading "##-" prefixes (e.g., "01-", "12-").
-    # This regex matches leading digits and a hyphen.
+    # Step 1: Remove leading "##-" prefixes
     processed_name = re.sub(r"^\d+-", "", processed_name)
 
     name_lower = processed_name.lower()
 
-    # Step 3: Check for "module" (Step 2 is implicit in name_lower).
-    # Search for "module" case-insensitively by operating on name_lower.
+    # Step 3: Attempt to find "module" and extract module number & title base
+    module_slug_prefix = ""
+    # Default to using the full lowercased name (after prefix stripping)
+    # for slugification if module pattern is not found or is incomplete.
+    text_to_slugify = name_lower
+
     module_keyword_match = re.search(r"module", name_lower)
-    if not module_keyword_match:
-        return ""  # Drop if "module" is not found
+    if module_keyword_match:
+        # Search for "module[\\s_-]*(\\d+)" starting from where "module"
+        # was found.
+        search_start_index = module_keyword_match.start()
+        search_string_for_num_pattern = name_lower[search_start_index:]
+        # This regex captures the number after "module" and optional
+        # separators.
+        module_num_pattern_regex = r"module[\s_-]*(\d+)"
+        module_pattern_match = re.search(
+            module_num_pattern_regex, search_string_for_num_pattern
+        )
 
-    # Step 4: Extract module number.
-    # Search in the part of the string starting from where "module" was found.
-    search_string_for_num = name_lower[module_keyword_match.start() :]
-    module_num_pattern = r"module[\s_-]*(\d+)"
-    module_pattern_match = re.search(module_num_pattern, search_string_for_num)
+        if module_pattern_match:
+            # "module <number>" pattern was successfully matched.
+            module_number = module_pattern_match.group(1)
+            module_slug_prefix = f"m{int(module_number)}"
 
-    if not module_pattern_match:
-        # "module" was found, but not in the "module <number>" format
-        # we expect.
-        return ""
+            # The text to slugify is what comes *after* the "module <number>"
+            # match. module_pattern_match.end() is an index relative to
+            # search_string_for_num_pattern.
+            # Adjust by module_keyword_match.start() to get the correct
+            # slice from the original name_lower.
+            title_start_offset = module_pattern_match.end()
+            title_start_idx = search_start_index + title_start_offset
+            text_to_slugify = name_lower[title_start_idx:]
+        # If module_pattern_match is None, "module" was found but not the
+        # "module <number>" pattern. In this case, text_to_slugify remains
+        # name_lower (as initialized), and module_slug_prefix remains "".
+        # This effectively means we slugify the whole name_lower.
 
-    module_number = module_pattern_match.group(1)
-    module_slug_prefix = f"m{int(module_number)}"
-
-    # Step 5: Get the part of the name *after* "module <number>" pattern.
-    # module_pattern_match.end() is an index relative to search_string_for_num.
-    # Adjust by adding module_keyword_match.start() to get the index
-    # in original name_lower.
-    title_start_idx = module_keyword_match.start() + module_pattern_match.end()
-    title_text = name_lower[title_start_idx:]
-
-    # Step 6: Slugify the title text
-    slugified_title_part = ""
-    if title_text.strip():  # Only process if there's non-whitespace content
+    # Slugify the determined text_to_slugify
+    slugified_core_part = ""
+    # Only process if there's non-whitespace content
+    if text_to_slugify.strip():
         # Replace non-alphanumerics with a single dash
-        temp_title_slug = re.sub(r"[^a-zA-Z0-9]+", "-", title_text.strip())
+        temp_slug = re.sub(r"[^a-zA-Z0-9]+", "-", text_to_slugify.strip())
         # Strip leading/trailing hyphens from this part
-        slugified_title_part = temp_title_slug.strip("-")
+        slugified_core_part = temp_slug.strip("-")
 
-    # Step 7: Construct final slug
-    if slugified_title_part:
-        final_slug = f"{module_slug_prefix}-{slugified_title_part}"
+    # Construct final slug
+    if module_slug_prefix:  # "module <number>" was found and prefix generated
+        if slugified_core_part:
+            final_slug = f"{module_slug_prefix}-{slugified_core_part}"
+        else:
+            # e.g., "m123" if title part was empty
+            final_slug = module_slug_prefix
+    # "module <number>" was NOT found, use the slugified version of
+    # text_to_slugify
     else:
-        final_slug = module_slug_prefix
+        final_slug = slugified_core_part
 
-    # Step 8: Truncate to 60 chars
+    # Step 4: Truncate to 60 chars
     final_slug = final_slug[:60]
 
     return final_slug
