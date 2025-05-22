@@ -16,7 +16,7 @@ A tool to clone Canvas course content locally, creating a directory structure ba
 2. **Create and activate a virtual environment (recommended):**
 
    ```sh
-   python -m venv .venv
+   uv venv
    source .venv/bin/activate  # On Windows, use .venv\Scripts\activate
    ```
 
@@ -25,6 +25,8 @@ A tool to clone Canvas course content locally, creating a directory structure ba
    ```sh
    uv sync
    ```
+
+   _(Note: While `uv` is the recommended tool for setting up the environment and installing dependencies for this project, traditional Python tools like `pip` with `python -m venv` for environment creation are also perfectly acceptable if you prefer them.)_
 
 ## Configuration
 
@@ -98,7 +100,7 @@ If a Canvas course has modules titled:
 
 Running `uv run canvas-gci --course-id YOUR_COURSE_ID` would result in the following structure (assuming you ran it in `~/MyCourses/STAT4000/`):
 
-```
+```text
 ~/MyCourses/STAT4000/
 └── modules/
     ├── m1-getting-started/
