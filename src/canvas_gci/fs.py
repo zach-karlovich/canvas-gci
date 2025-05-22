@@ -97,10 +97,11 @@ def slugify(name: str) -> str:
         else:
             # e.g., "m123" if title part was empty
             final_slug = module_slug_prefix
-    # "module <number>" was NOT found, use the slugified version of
-    # text_to_slugify
     else:
-        final_slug = slugified_core_part
+        # "module <number>" pattern was NOT found (or "module" keyword
+        # itself was not found).
+        # Return empty string to signal that no directory should be created.
+        return ""
 
     # Step 4: Truncate to 60 chars
     final_slug = final_slug[:60]
@@ -110,24 +111,34 @@ def slugify(name: str) -> str:
 
 def ensure_module_dirs(root: Path, modules: List[CanvasModule]) -> List[Path]:
     """
-    Create module directories under root, using slugified names and position.
+    Create module directories under root, using slugified names.
+    Only creates directories for modules whose names result in a valid
+    (non-empty) slug (e.g., containing "module <number>").
     Idempotent: does not overwrite existing dirs. Handles slug collisions.
     Returns a list of created/existing paths.
     """
     root.mkdir(parents=True, exist_ok=True)
     created_paths = []
-    used = set()
+    used: set[str] = set()
     for module in modules:
         base_slug = slugify(module.name)
+
+        # Skip if slug is empty (e.g., item is not a typical module,
+        # like "Course Information").
+        if not base_slug:
+            continue
+
         slug = base_slug
         i = 2
         while True:
-            dir_name = f"{module.position:02d}-{slug}"
+            # Directory name is now just the slug
+            # (or slug-i for collision handling)
+            dir_name = slug
             path = root / dir_name
             # If the directory exists, treat it as idempotent and use it
             if dir_name not in used and path.exists():
                 break
-            # If the directory does not exist and is not used in this run, use it  # noqa: E501
+            # If new and not used in this run, use it
             if dir_name not in used and not path.exists():
                 break
             slug = f"{base_slug}-{i}"
